@@ -1,10 +1,11 @@
 <div class="container">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h2 class="h2">Todos List</h2>
+    <h2 class="h2">To Do List</h2>
   </div>
 
   <ul class="list-group">
     <li class="list-group-item d-flex list-group-item-action" *ngFor="let todo of Todos; let i = index">
+	  <input class="form-check-input me-2" type="checkbox" [checked]="todo.done" (click)="toggleDone(todo.id, i)" [disabled]="isProcessing">	
       <span class="flex-grow-1"> {{todo.value}}</span>
       <button class="btn btn-sm btn-danger" (click)="delete(todo.id, i)">Delete</button>
     </li>

@@ -43,4 +43,17 @@ export class AppComponent implements OnInit {
         console.log(err);
     });
   }
+toggleDone(id:any, i:any) {
+  console.log("Toggled checkbox for " + id);
+  this.isProcessing = true;
+  this.Todos[i].done = !this.Todos[i].done;
+  this.restService.updateTodo(id, this.Todos[i])
+  .subscribe((res) => {
+      console.log('Data updated successfully!');
+      this.isProcessing = false;
+    }, (err) => {
+      console.log(err);
+      this.Todos[i].done = !this.Todos[i].done;
+  });
+}
 }
